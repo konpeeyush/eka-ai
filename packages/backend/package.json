@@ -3,14 +3,19 @@
     "type": "module",
     "scripts": {
         "dev": "convex dev",
-        "setup": "convex dev --until-success"
+        "setup": "convex dev --until-success",
+        "lint": "eslint",
+        "format": "prettier --write \"**/*.{ts,tsx}\"",
+        "typecheck": "tsc --noEmit"
     },
     "exports": {
-        "./convex": "./convex/*.ts"
+        "./convex/*": "./convex/*"
     },
     "devDependencies": {
+        "@workspace/eslint-config": "workspace:*",
         "@workspace/typescript-config": "workspace:*",
-        "typescript": "latest"
+        "eslint": "^9.39.2",
+        "typescript": "^5.9.3"
     },
     "dependencies": {
         "convex": "^1.39.1"

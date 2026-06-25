@@ -5,7 +5,7 @@
       "@/*": ["./*"],
       "@workspace/ui/globals.css": ["../../packages/ui/src/styles/globals.css"],
       "@workspace/ui/*": ["../../packages/ui/src/*"],
-      "@workspace/backend/*": ["../../packages/backend/src/*"]
+      "@workspace/backend/*": ["../../packages/backend/*"]
     },
     "plugins": [
       {
