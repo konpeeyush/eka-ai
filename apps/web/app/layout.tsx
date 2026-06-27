@@ -29,9 +29,9 @@ export default function RootLayout({
         <ThemeProvider>
           <Providers>
             <ClerkProvider>
-            <ConvexClientProvider>
-              {children}
-            </ConvexClientProvider>
+              <ConvexClientProvider>
+                  {children}
+              </ConvexClientProvider>
             </ClerkProvider>
           </Providers>
         </ThemeProvider>
