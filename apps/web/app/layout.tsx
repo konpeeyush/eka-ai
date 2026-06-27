@@ -4,6 +4,8 @@ import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@workspace/ui/lib/utils";
 import { Providers } from "@/components/providers";
+import { ClerkProvider } from '@clerk/nextjs'
+import ConvexClientProvider from "@/components/clerk-provider";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -26,7 +28,11 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <Providers>
-            {children}
+            <ClerkProvider>
+            <ConvexClientProvider>
+              {children}
+            </ConvexClientProvider>
+            </ClerkProvider>
           </Providers>
         </ThemeProvider>
       </body>
