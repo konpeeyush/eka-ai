@@ -12,6 +12,7 @@
         "./convex/*": "./convex/*"
     },
     "devDependencies": {
+        "@types/node": "^25.2.3",
         "@workspace/eslint-config": "workspace:*",
         "@workspace/typescript-config": "workspace:*",
         "eslint": "^9.39.2",

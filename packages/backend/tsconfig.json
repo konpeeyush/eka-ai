@@ -5,7 +5,8 @@
     "moduleResolution": "Bundler",
     "noEmit": true,
     "declaration": false,
-    "declarationMap": false
+    "declarationMap": false,
+    "types": ["node"]
   },
   "include": ["convex/**/*.ts"],
   "exclude": ["node_modules"]
