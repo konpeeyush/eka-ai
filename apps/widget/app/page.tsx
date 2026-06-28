@@ -1,15 +1,20 @@
 "use client"
-import { useQuery } from "convex/react"
-import { api } from "@workspace/backend/convex/_generated/api"
 
-export default function Page() {
-  const users = useQuery(api.users.getMany)
+import { WidgetView } from "@/modules/widget/ui/views/widget-views"
+import { use } from "react";
+
+interface Props {
+  searchParams: Promise<{
+    organizationId: string;
+
+  }>
+}
+const Page = ({ searchParams }: Props) => {
+  const { organizationId } = use(searchParams);
+
   return (
-    <div className="flex min-h-svh w-full flex-col items-center justify-center gap-4 p-6">
-      <p className="text-sm font-medium">widget app — Convex connection</p>
-      <pre className="max-w-sm overflow-auto rounded-md border p-4 text-xs">
-        {JSON.stringify(users, null, 2)}
-      </pre>
-    </div>
+    <WidgetView organizationId={organizationId} />
   )
 }
+
+export default Page
