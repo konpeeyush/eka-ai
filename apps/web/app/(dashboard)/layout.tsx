@@ -1,16 +1,11 @@
-import { AuthGuard } from "@/modules/auth/ui/components/auth-guard"
-import { OrganizationGuard } from "@/modules/auth/ui/components/organization-guard";
+import { DashboardLayout } from "@/modules/dashboard/ui/layouts/dashboard-layout"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="min-h-screen min-w-screen flex flex-col justify-center items-center">
-        <AuthGuard>
-            <OrganizationGuard>
-                {children}
-            </OrganizationGuard>
-        </AuthGuard>
+        <div className="flex min-h-screen min-w-screen flex-col items-center justify-center">
+            <DashboardLayout>{children}</DashboardLayout>
         </div>
     )
 }
 
-export default Layout;
+export default Layout
