@@ -16,5 +16,3 @@ export const WidgetHeader = ({
         </header>
     )
 }
-
-export default WidgetHeader
