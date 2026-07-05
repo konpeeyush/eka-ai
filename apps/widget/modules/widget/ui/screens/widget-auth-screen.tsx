@@ -16,7 +16,7 @@ import { useMutation } from "convex/react";
 import { api } from "@workspace/backend/convex/_generated/api";
 import { Doc } from "@workspace/backend/convex/_generated/dataModel";
 import { useAtomValue, useSetAtom } from "jotai";
-import { contactSessionIdAtomFamily, organizationIdAtom } from "../../atoms/widget-atoms";
+import { contactSessionIdAtomFamily, organizationIdAtom, screenAtom } from "../../atoms/widget-atoms";
 
 const formSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -34,6 +34,7 @@ export const WidgetAuthScreen = () => {
     const setContactSessionId = useSetAtom(
         contactSessionIdAtomFamily(organizationId || "")
     )
+    const setScreen = useSetAtom(screenAtom);
 
     const createContactSession = useMutation(api.public.contactSessions.create);
 
@@ -92,6 +93,7 @@ export const WidgetAuthScreen = () => {
             });
 
             setContactSessionId(contactSessionId);
+            setScreen("selection");
         } catch (error) {
             console.error("Submission failed:", error);
         } finally {
