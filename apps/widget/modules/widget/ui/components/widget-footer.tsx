@@ -4,7 +4,7 @@ import { Button } from "@workspace/ui/components/button"
 import { cn } from "@workspace/ui/lib/utils"
 
 export const WidgetFooter = () => {
-    const screen = "selection";
+    const screen = "selection" as string;
     return (
         <footer className="flex items-center justify-between border-t bg-background">
             <Button
