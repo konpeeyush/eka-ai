@@ -23,9 +23,6 @@ const formSchema = z.object({
     email: z.string().min(1, "Invalid email address"),
 });
 
-type FormValues = z.infer<typeof formSchema>;
-
-
 export const WidgetAuthScreen = () => {
     const [errors, setErrors] = useState<Record<string, string | string[]>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,7 +42,7 @@ export const WidgetAuthScreen = () => {
         setIsFormEmpty(!nameValue?.trim() || !emailValue?.trim());
     };
 
-    const handleSubmit = async (formValues: Record<string, any>) => {
+    const handleSubmit = async (formValues: Record<string, unknown>) => {
         // Clear stale errors before re-validating
         setErrors({});
 

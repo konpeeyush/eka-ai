@@ -8,7 +8,7 @@ import { WidgetHeader } from "../components/widget-header";
 import { useEffect, useState } from "react";
 import { useAction, useMutation } from "convex/react";
 import { api } from "@workspace/backend/convex/_generated/api";
-import { Id } from "@workspace/backend/convex/_generated/dataModel";
+
 
 type InitStep = "org" | "session" | "settings" | "voice" | "done";
 
@@ -67,8 +67,10 @@ export const WidgetLoadingScreen = ({ organizationId }: { organizationId: string
 
         setLoadingMessage("Finding contact session ID...")
         if (!contactSessionId) {
-            setSessionValid(false);
-            setStep("done");
+            setTimeout(() => {
+                setSessionValid(false);
+                setStep("done");
+            }, 0);
             return;
         }
 
