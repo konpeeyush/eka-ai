@@ -2,14 +2,17 @@ import { Home01Icon, InboxIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Button } from "@workspace/ui/components/button"
 import { cn } from "@workspace/ui/lib/utils"
+import { useAtomValue, useSetAtom } from "jotai"
+import { screenAtom } from "../../atoms/widget-atoms"
 
 export const WidgetFooter = () => {
-    const screen = "selection" as string;
+    const screen = useAtomValue(screenAtom);
+    const setScreen = useSetAtom(screenAtom)
     return (
         <footer className="flex items-center justify-between border-t bg-background">
             <Button
                 className="h-14 flex-1 rounded-none"
-                onClick={() => { }}
+                onClick={() => { setScreen("selection") }}
                 size="icon"
                 variant="ghost"
             >
@@ -21,7 +24,7 @@ export const WidgetFooter = () => {
 
             <Button
                 className="h-14 flex-1 rounded-none"
-                onClick={() => { }}
+                onClick={() => { setScreen("inbox") }}
                 size="icon"
                 variant="ghost"
             >

@@ -9,6 +9,9 @@ import { WidgetHeader } from "../components/widget-header";
 import { Button } from "@workspace/ui/components/button";
 import { api } from "@workspace/backend/convex/_generated/api";
 import { useAction, useQuery } from "convex/react";
+import { useInfiniteScroll } from "@workspace/ui/hooks/use-infinite-scroll";
+import { InfiniteScrollTrigger } from "@workspace/ui/components/infinite-scroll-trigger";
+import { DicebearAvatar } from "@workspace/ui/components/dicebear-avatar"
 import {
     AIConversation,
     AIConversationContent
@@ -70,6 +73,12 @@ export const WidgetChatScreen = () => {
         { initialNumItems: 10 }
     )
 
+    const { topElementRef, handleLoadMore, canLoadMore, isLoadingMore } = useInfiniteScroll({
+        status: messages.status,
+        loadMore: messages.loadMore,
+        loadSize: 10
+    })
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -117,6 +126,12 @@ export const WidgetChatScreen = () => {
             </WidgetHeader>
             <AIConversation>
                 <AIConversationContent>
+                    <InfiniteScrollTrigger
+                        canLoadMore={canLoadMore}
+                        isLoadingMore={isLoadingMore}
+                        onLoadMore={handleLoadMore}
+                        ref={topElementRef}
+                    />
                     {toUIMessages(messages.results ?? [])?.map((message) => {
                         return (
                             <AIMessage
@@ -127,8 +142,15 @@ export const WidgetChatScreen = () => {
                                     <AIResponse>
                                         {message.text}
                                     </AIResponse>
-                                    {/* TODO: add avatar */}
                                 </AIMessageContent>
+                                {message.role === "assistant" && (
+                                    <DicebearAvatar
+                                        imageUrl="/logo.svg"
+                                        seed="assistant"
+                                        size={24}
+                                        className="rounded-none border-none bg-transparent"
+                                    />
+                                )}
                             </AIMessage>
                         )
                     })}
